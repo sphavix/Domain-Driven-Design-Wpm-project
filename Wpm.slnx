@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Wpm.Management.Api/Wpm.Management.Api.csproj" />
+  <Project Path="Wpm.Management.Domain.Tests/Wpm.Management.Domain.Tests.csproj" />
+  <Project Path="Wpm.Management.Domain/Wpm.Management.Domain.csproj" />
+</Solution>
