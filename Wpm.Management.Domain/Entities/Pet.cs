@@ -9,7 +9,7 @@ namespace Wpm.Management.Domain.Entities
         public string Name { get; init; }
         public int Age { get; init; }
         public string Color { get; init; }
-        public Weight Weight { get; private set; }
+        public Weight? Weight { get; private set; }
         public SexOfPet SexOfPet { get; init; }
         public WeightClass WeightClass { get; private set; }
         public BreedId BreedId { get; init; }
