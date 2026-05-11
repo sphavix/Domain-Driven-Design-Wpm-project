@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Wpm.Management.Domain.Entities
+﻿
+namespace Wpm.SharedKernel
 {
     public abstract class BaseEntity :IEquatable<BaseEntity>
     {

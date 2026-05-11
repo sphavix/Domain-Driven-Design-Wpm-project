@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Wpm.Management.Domain.ValueObjects
+﻿namespace Wpm.SharedKernel
 {
     public record Weight
     {
@@ -17,7 +13,7 @@ namespace Wpm.Management.Domain.ValueObjects
             Value = value;
         }
 
-        public static implicit operator Weight(double value)
+        public static implicit operator Weight(decimal value)
         {
             return new Weight(value);
         }

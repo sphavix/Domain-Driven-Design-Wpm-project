@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Wpm.Management.Domain\Wpm.Management.Domain.csproj" />
-    <ProjectReference Include="..\Wpm.SharedKernel\Wpm.SharedKernel.csproj" />
+    <ProjectReference Include="..\Wpm.Clinic.Domain\Wpm.Clinic.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

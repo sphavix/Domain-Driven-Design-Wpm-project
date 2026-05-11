@@ -1,5 +1,9 @@
 <Solution>
+  <Project Path="Wpm.Clinic.Api/Wpm.Clinic.Api.csproj" />
+  <Project Path="Wpm.Clinic.Domain.Tests/Wpm.Clinic.Domain.Tests.csproj" />
+  <Project Path="Wpm.Clinic.Domain/Wpm.Clinic.Domain.csproj" />
   <Project Path="Wpm.Management.Api/Wpm.Management.Api.csproj" />
   <Project Path="Wpm.Management.Domain.Tests/Wpm.Management.Domain.Tests.csproj" />
   <Project Path="Wpm.Management.Domain/Wpm.Management.Domain.csproj" />
+  <Project Path="Wpm.SharedKernel/Wpm.SharedKernel.csproj" Id="0e0e8897-8131-4b2f-a95b-5adcc8916b63" />
 </Solution>
