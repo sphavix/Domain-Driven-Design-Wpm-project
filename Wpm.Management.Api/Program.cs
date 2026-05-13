@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Wpm.Management.Api.Application.Commands;
+using Wpm.Management.Api.Application.Handlers;
+using Wpm.Management.Api.Application.Services;
 using Wpm.Management.Api.Infrastructure;
 using Wpm.Management.Domain.Services;
 
@@ -20,6 +22,7 @@ builder.Services.AddDbContext<ManagementDbContext>(options =>
 //builder.Services.AddScoped<IManagementRepository, ManagementRepository>();
 builder.Services.AddScoped<IBreedService, Wpm.Management.Api.Infrastructure.BreedService>();
 builder.Services.AddScoped<ManagementApplicationService>();
+builder.Services.AddScoped<ICommandHandler<SetWeightCommand>, SetWeightCommandHandler>();
 
 var app = builder.Build();
 
