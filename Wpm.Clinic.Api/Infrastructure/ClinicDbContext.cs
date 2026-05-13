@@ -21,6 +21,7 @@ namespace Wpm.Clinic.Api.Infrastructure
                 consultation.OwnsOne(p => p.Diagnosis);
                 consultation.OwnsOne(p => p.Treatment);
                 consultation.OwnsOne(p => p.CurrentWeight);
+                consultation.OwnsOne(p => p.When);
 
                 consultation.OwnsMany(c => c.AdminsteredDrug, a =>
                 {

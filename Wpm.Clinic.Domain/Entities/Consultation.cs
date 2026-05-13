@@ -8,8 +8,7 @@ namespace Wpm.Clinic.Domain.Entities
     {
         private readonly List<DrugAdministration> administeredDrugs = new();
         private readonly List<VitalSigns> vitalSignsReading = new();
-        public DateTime StartedAt { get; init; }
-        public DateTime? EndedAt { get; private set; }
+       public DateTimeRange When { get; private set; }
         public PatientId PatientId { get; init; }
         public Text? Diagnosis { get; private set; }
         public Text? Treatment { get; private set; }
@@ -23,7 +22,7 @@ namespace Wpm.Clinic.Domain.Entities
             Id = Guid.NewGuid();
             PatientId = patientId;
             Status = ConsulttionStatus.Open;
-            StartedAt = DateTime.UtcNow;
+            When = DateTime.UtcNow;
         }
 
         public void RegisterVitalSigns(IEnumerable<VitalSigns> vitalSigns)
@@ -55,7 +54,7 @@ namespace Wpm.Clinic.Domain.Entities
             }
 
             Status = ConsulttionStatus.Closed;
-            EndedAt = DateTime.UtcNow;
+            When = new DateTimeRange(When.StartedAt, DateTime.UtcNow);
         }
 
         public void SetDiagnosis(Text diagnosis) // dont allow any modifications after consultation is closed.

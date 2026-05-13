@@ -16,7 +16,7 @@ public class ConsultationTests
     public void Consultation_should_not_have_ended_timestamp()
     {
         var consultation = new Consultation(Guid.NewGuid());
-        Assert.Null(consultation.EndedAt);
+        Assert.Null(consultation.When.EndedAt);
     }
 
     [Fact]
@@ -84,9 +84,45 @@ public class ConsultationTests
     public void Consultation_should_register_vitalsigns()
     {
         var consultation = new Consultation(Guid.NewGuid());
-        IEnumerable<VitalSigns> vitalSigns = [new VitalSigns(38.8m, 100, 120)];
+        IEnumerable<VitalSigns> vitalSigns = [new VitalSigns(DateTime.UtcNow, 38.8m, 100, 120)];
         consultation.RegisterVitalSigns(vitalSigns);
         Assert.True(consultation.VitalSignsReading.Count == 1);
         Assert.True(consultation.VitalSignsReading.First() == vitalSigns.First());
+    }
+
+    [Fact]
+    public void DateTimeRange_should_be_valid()
+    {
+        var theDate = new DateTime(2027, 12, 24, 22, 0, 0);
+        var dr1 = new DateTimeRange(theDate, theDate.AddMinutes(10));
+        Assert.NotNull(dr1.Duration);
+    }
+
+    [Fact]
+    public void DateTimeRange_should_not_be_valid()
+    {
+        var theDate = new DateTime(2027, 12, 24, 22, 0, 0);
+        Assert.Throws<InvalidOperationException>(() =>
+        {
+            var dr1 = new DateTimeRange(theDate.AddMinutes(10), theDate);
+        });
+
+    }
+
+    [Fact]
+    public void DateTimeRange_should_be_ongoing()
+    {
+        var theDate = new DateTime(2027, 12, 24, 22, 0, 0);
+        var dr1 = new DateTimeRange(theDate);
+        Assert.Equal("Ongoing", dr1.Duration);
+    }
+
+    [Fact]
+    public void DateTimeRange_should_be_equals()
+    {
+        var theDate = new DateTime(2027, 12, 24, 22, 0, 0);
+        var dr1 = new DateTimeRange(theDate);
+        var dr2 = new DateTimeRange(theDate);
+        Assert.Equal(dr1, dr2);
     }
 }
