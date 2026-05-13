@@ -18,5 +18,7 @@ namespace Wpm.Clinic.Domain.Entities
             Dose = dose;
 
         }
+
+        public DrugAdministration() { }
     }
 }
