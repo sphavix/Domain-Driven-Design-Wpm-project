@@ -3,7 +3,7 @@ namespace Wpm.SharedKernel
 {
     public abstract class BaseEntity :IEquatable<BaseEntity>
     {
-        public Guid Id { get; init; }
+        public Guid Id { get; protected set; }
 
         public bool Equals(BaseEntity? other)
         {

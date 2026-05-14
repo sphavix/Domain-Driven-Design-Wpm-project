@@ -5,38 +5,9 @@ namespace Wpm.Clinic.Api.Infrastructure
 {
     public class ClinicDbContext(DbContextOptions<ClinicDbContext> options) : DbContext(options)
     {
-        public DbSet<Consultation> Consultations { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Consultation>(consultation =>
-            {
-                consultation.HasKey(c => c.Id);
-
-                consultation.Property(p => p.PatientId)
-                            .HasConversion(v => v.Value, v => new Domain.ValueObjects.PatientId(v));
-
-                consultation.OwnsOne(p => p.Diagnosis);
-                consultation.OwnsOne(p => p.Treatment);
-                consultation.OwnsOne(p => p.CurrentWeight);
-                consultation.OwnsOne(p => p.When);
-
-                consultation.OwnsMany(c => c.AdminsteredDrug, a =>
-                {
-                    a.WithOwner().HasForeignKey("ConsultationId");
-                    a.OwnsOne(d => d.DrugId);
-                    a.OwnsOne(d => d.Dose);
-                });
-
-                consultation.OwnsMany(c => c.VitalSignsReading, o =>
-                {
-                    o.WithOwner().HasForeignKey("ConsultationId");
-                });
-            });
-        }
+        public DbSet<ConsultationEventData> Consultations { get; set; }
     }
+
 
     public static class ClinicDbContextExtensions
     {
@@ -48,4 +19,10 @@ namespace Wpm.Clinic.Api.Infrastructure
             context.Database.CloseConnection();
         }
     }
+
+    public record ConsultationEventData(Guid Id,
+                                        string AggregateId,
+                                        string EventName,
+                                        string Data,
+                                        string AssemblyQualifiedName);
 }

@@ -21,5 +21,10 @@ namespace Wpm.Clinic.Domain.ValueObjects
         {
             return new PatientId(value);
         }
+
+        public static implicit operator Guid(PatientId Id)
+        {
+            return Id.Value;
+        }
     }
 }
