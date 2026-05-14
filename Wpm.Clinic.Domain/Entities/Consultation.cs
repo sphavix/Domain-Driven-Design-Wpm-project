@@ -1,5 +1,6 @@
 ﻿using Wpm.Clinic.Domain.ValueObjects;
 using Wpm.SharedKernel;
+using Wpm.SharedKernel.DomainEvents;
 
 namespace Wpm.Clinic.Domain.Entities
 {
@@ -75,6 +76,11 @@ namespace Wpm.Clinic.Domain.Entities
             {
                 throw new InvalidOperationException("The consultation is already closed");
             }
+        }
+
+        public override void ChangeStateByUsingDomainEvent(IDomainEvent domainEvent)
+        {
+            throw new NotImplementedException();
         }
     }
 
